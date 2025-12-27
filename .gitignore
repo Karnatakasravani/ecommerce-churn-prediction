@@ -1,1 +1,35 @@
-.ipynb_checkpoints/ 
+############################
+# DATA FILES
+############################
+*.csv
+*.xlsx
+data/raw/*
+data/processed/*
+data/interim/*
+
+############################
+# MODEL FILES
+############################
+*.pkl
+*.h5
+models/*.pkl
+models/*.h5
+
+############################
+# PYTHON
+############################
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+############################
+# ENVIRONMENT FILES
+############################
+venv/
+.env
+
+############################
+# OS FILES
+############################
+.DS_Store
+Thumbs.db
