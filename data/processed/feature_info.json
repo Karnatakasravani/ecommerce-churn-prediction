@@ -1,0 +1,26 @@
+{
+    "total_features": 25,
+    "feature_groups": {
+        "RFM": [
+            "Recency",
+            "Frequency",
+            "Monetary"
+        ],
+        "PurchaseBehavior": [
+            "avg_quantity_per_order",
+            "total_items_purchased",
+            "unique_products",
+            "unique_invoices"
+        ],
+        "Revenue": [
+            "total_revenue",
+            "avg_order_value",
+            "revenue_per_item"
+        ],
+        "Temporal": [
+            "active_days",
+            "active_months",
+            "avg_days_between_orders"
+        ]
+    }
+}

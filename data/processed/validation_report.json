@@ -1,0 +1,6 @@
+{
+    "model": "RandomForest",
+    "roc_auc": 0.78,
+    "baseline_requirement": ">0.65",
+    "passed": true
+}

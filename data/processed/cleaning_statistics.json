@@ -1,0 +1,10 @@
+{
+    "initial_rows": 541910,
+    "rows_after_cleaning": 392733,
+    "retention_percentage": 72.47,
+    "steps_applied": [
+        "removed null CustomerID",
+        "removed cancelled orders",
+        "removed invalid quantities"
+    ]
+}
