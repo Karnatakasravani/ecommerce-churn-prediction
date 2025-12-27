@@ -42,6 +42,37 @@ The dataset contains historical purchase transactions including:
 - Purchase timestamps
 
 ---
+🛑 How Churn is Defined in This Project
+
+Customer churn is defined as a customer who has stopped purchasing for a significant period of time compared to their usual buying pattern.
+
+Because real churn events are not labeled in the dataset, churn must be inferred using time-based logic.
+
+🔍 Our churn definition
+
+A customer is considered churned if:
+
+They did NOT place any orders during the observation period,
+after being active during the training period.
+
+🎯 Business meaning
+
+A “churned” customer is:
+
+unlikely to return without intervention
+
+a key target for retention campaigns
+
+high-priority for marketing actions
+
+Examples:
+
+win-back email
+
+coupon offer
+
+personalized engagement
+
 
 ## 🧹 Data Processing & Feature Engineering
 
