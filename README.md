@@ -66,11 +66,8 @@ a key target for retention campaigns
 high-priority for marketing actions
 
 Examples:
-
 win-back email
-
 coupon offer
-
 personalized engagement
 
 
@@ -89,6 +86,59 @@ Customer-level features were created including:
 - Order statistics
 
 More than **25 meaningful features** were generated to model churn behavior.
+
+---
+## 🛠 Technical Notes on Data Cleaning
+
+This project works with real-world transactional data, so data quality was one of the biggest challenges. The goal was to prepare a reliable, customer-level dataset without artificially biasing churn predictions.
+
+Below are the key technical cleaning decisions:
+
+### 🔹 Handling Missing Customer IDs
+The dataset originally contained ~135,000 rows without CustomerID
+These rows were removed
+Reasoning:
+Churn is defined at the customer level
+Without CustomerID, transactions cannot be assigned
+Keeping them would distort customer metrics
+
+### 🔹 Removing Cancelled Orders
+Cancelled invoices begin with the letter “C”
+These rows were excluded
+Reasoning:
+Cancelled orders do not reflect real purchasing behaviour
+Including them may incorrectly lower frequency or monetary value
+
+### 🔹 Handling Negative Quantities
+Negative quantities typically indicate returns or corrections
+These rows were removed from the modeling dataset
+Reasoning:
+They introduce noise into purchasing totals
+They make monetary values misleading
+Returns behaviour is business-specific and out-of-scope
+
+### 🔹 Date Parsing & Validation
+InvoiceDate converted to datetime format
+Invalid or missing dates removed
+Reasoning:
+Time-dependent features (recency, tenure, churn window)
+depend on accurate timestamps
+
+### 🔹 Duplicate & Corrupt Records
+Exact duplicate rows were dropped
+Corrupt or incomplete rows excluded
+
+### 📉 Final Dataset Quality Summary
+Stage	Row Count
+Original	541,910
+After Cleaning	~392,733
+Retention	~72.47%
+
+This represents a realistic business-grade dataset rather than a perfectly clean academic dataset.
+
+### 🧠 Key Principle
+Clean enough to avoid bias —
+but realistic enough to reflect true customer behaviour.
 
 ---
 
