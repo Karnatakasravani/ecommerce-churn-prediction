@@ -1,6 +1,20 @@
 {
     "total_rows": 541910,
-    "total_columns": 8,
-    "missing_customer_id": 135080,
-    "retention_after_customer_id_removal": 72.47
+    "total_columns": 9,
+    "missing_values": {
+        "Invoice": 0,
+        "StockCode": 0,
+        "Description": 1454,
+        "Quantity": 0,
+        "InvoiceDate": 0,
+        "Price": 0,
+        "Customer ID": 135080,
+        "Country": 0,
+        "financial_year": 0
+    },
+    "duplicate_rows": 5268,
+    "date_range": {
+        "min": "2010-12-01 08:26:00",
+        "max": "2011-12-09 12:50:00"
+    }
 }
