@@ -1,0 +1,6 @@
+{
+    "logistic_regression_auc": 0.9998,
+    "random_forest_auc": 1.0,
+    "num_features": 24,
+    "samples": 4339
+}
