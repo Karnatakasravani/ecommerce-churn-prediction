@@ -1,0 +1,54 @@
+{
+  "student_information": {
+    "name": "Sravani Karnataka",
+    "email": "sravanikarnataka5@gmail.com",
+    "student_id": "22A91A4460",
+    "submission_date": "2025-12-26"
+  },
+  "repository": {
+    "url": "https://github.com/Karnatakasravani/ecommerce-churn-prediction",
+    "branch": "main",
+    "commit_hash": "latest"
+  },
+  "deployment": {
+    "platform": "Streamlit Cloud",
+    "live_url": "https://ecommerce-churn-prediction-gpp.streamlit.app/"
+  },
+  "dataset": {
+    "name": "Online Retail II",
+    "source": "UCI Machine Learning Repository",
+    "initial_rows": 541910,
+    "rows_after_cleaning": 392733,
+    "retention_percentage": 72.47
+  },
+  "model": {
+    "models_trained": [
+      "Logistic Regression",
+      "Random Forest",
+      "XGBoost"
+    ],
+    "best_model": "Random Forest",
+    "evaluation_metrics": {
+      "roc_auc": "> 0.65",
+      "churn_rate": "25–35%"
+    }
+  },
+  "phases_completed": {
+    "data_acquisition": true,
+    "data_cleaning": true,
+    "feature_engineering": true,
+    "modeling": true,
+    "deployment": true,
+    "dockerization": true
+  },
+  "key_learnings": [
+    "Customer churn can be effectively modeled using RFM and behavioral features",
+    "Data cleaning and temporal splits are critical for realistic churn prediction",
+    "Streamlit enables fast and professional ML deployment"
+  ],
+  "challenges_faced": [
+    "Handling large datasets efficiently",
+    "Structuring features at customer level",
+    "Docker networking and deployment issues"
+  ]
+}
