@@ -1,6 +1,11 @@
 {
-    "model": "RandomForest",
-    "roc_auc": 0.78,
-    "baseline_requirement": ">0.65",
-    "passed": true
+    "total_rows": 392733,
+    "total_columns": 9,
+    "date_range": "2010-12-01 08:26:00 to 2011-12-09 12:50:00",
+    "unique_customers": 4339,
+    "unique_products": 3665,
+    "unique_countries": 37,
+    "total_revenue": 8887226.894000003,
+    "average_order_value": 479.4576442598188,
+    "validation_passed": true
 }
