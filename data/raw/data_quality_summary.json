@@ -1,20 +1,11 @@
 {
-    "total_rows": 541910,
-    "total_columns": 9,
-    "missing_values": {
-        "Invoice": 0,
-        "StockCode": 0,
-        "Description": 1454,
-        "Quantity": 0,
-        "InvoiceDate": 0,
-        "Price": 0,
-        "Customer ID": 135080,
-        "Country": 0,
-        "financial_year": 0
-    },
-    "duplicate_rows": 5268,
-    "date_range": {
-        "min": "2010-12-01 08:26:00",
-        "max": "2011-12-09 12:50:00"
-    }
+    "Total Rows": 541910,
+    "Total Columns": 8,
+    "Missing Values": 136534,
+    "Duplicate Rows": 5268,
+    "Date Range": "2010-12-01 08:26:00 to 2011-12-09 12:50:00",
+    "Unique Customers": 4372,
+    "Missing CustomerIDs %": 24.93,
+    "Negative Quantities": 10624,
+    "Cancelled Invoices": 9288
 }
