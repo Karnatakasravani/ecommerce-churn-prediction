@@ -4,6 +4,16 @@ import numpy as np
 import joblib
 import plotly.express as px
 from sklearn.metrics import confusion_matrix, roc_curve, auc
+import plotly.graph_objects as go
+from sklearn.metrics import (
+    confusion_matrix,
+    roc_curve,
+    auc,
+    precision_score,
+    recall_score,
+    f1_score,
+    accuracy_score
+)
 
 # --------------------------------------------------
 # PAGE CONFIG
@@ -142,30 +152,97 @@ elif page == "Batch Prediction":
 elif page == "Model Performance Dashboard":
     st.title("📊 Model Performance Dashboard")
 
-    st.markdown("Baseline evaluation metrics of the trained model.")
+    st.markdown("These metrics are calculated from the real validation dataset.")
 
-    metrics = {
-        "ROC-AUC": 0.78,
-        "Precision": 0.72,
-        "Recall": 0.66,
-        "F1-Score": 0.69
-    }
+    # ------------------------------
+    # Load test data
+    # ------------------------------
+    try:
+        X_test = pd.read_csv("data/processed/X_test.csv")
+        y_test = pd.read_csv("data/processed/y_test.csv").values.ravel()
 
-    cols = st.columns(len(metrics))
-    for col, (k, v) in zip(cols, metrics.items()):
-        col.metric(k, v)
+        # Predict
+        y_pred = model.predict(X_test)
+        y_prob = model.predict_proba(X_test)[:, 1]
 
-    # Dummy confusion matrix for visualization
-    cm = [[2200, 690], [510, 939]]
-    fig = px.imshow(
-        cm,
-        text_auto=True,
-        labels=dict(x="Predicted", y="Actual"),
-        x=["Not Churn", "Churn"],
-        y=["Not Churn", "Churn"],
-        title="Confusion Matrix"
-    )
-    st.plotly_chart(fig, use_container_width=True)
+        # ------------------------------
+        # METRICS
+        # ------------------------------
+        roc_auc = auc(*roc_curve(y_test, y_prob)[:2])
+        precision = precision_score(y_test, y_pred)
+        recall = recall_score(y_test, y_pred)
+        f1 = f1_score(y_test, y_pred)
+        accuracy = accuracy_score(y_test, y_pred)
+
+        metrics = {
+            "Accuracy": round(accuracy, 3),
+            "Precision": round(precision, 3),
+            "Recall": round(recall, 3),
+            "F1 Score": round(f1, 3),
+            "ROC-AUC": round(roc_auc, 3),
+        }
+
+        cols = st.columns(len(metrics))
+        for col, (k, v) in zip(cols, metrics.items()):
+            col.metric(k, v)
+
+        # ------------------------------
+        # CONFUSION MATRIX
+        # ------------------------------
+        st.subheader("Confusion Matrix")
+
+        cm = confusion_matrix(y_test, y_pred)
+
+        fig = px.imshow(
+            cm,
+            text_auto=True,
+            color_continuous_scale="Blues",
+            labels=dict(x="Predicted", y="Actual"),
+            x=["Not Churn", "Churn"],
+            y=["Not Churn", "Churn"],
+            title="Confusion Matrix"
+        )
+
+        st.plotly_chart(fig, use_container_width=True)
+
+        # ------------------------------
+        # ROC CURVE
+        # ------------------------------
+        st.subheader("ROC Curve")
+
+        fpr, tpr, _ = roc_curve(y_test, y_prob)
+
+        fig2 = go.Figure()
+
+        fig2.add_trace(go.Scatter(
+            x=fpr,
+            y=tpr,
+            mode="lines",
+            name=f"ROC Curve (AUC = {roc_auc:.3f})"
+        ))
+
+        fig2.add_trace(go.Scatter(
+            x=[0, 1],
+            y=[0, 1],
+            mode="lines",
+            name="Random Model",
+            line=dict(dash="dash")
+        ))
+
+        fig2.update_layout(
+            xaxis_title="False Positive Rate",
+            yaxis_title="True Positive Rate",
+            width=800,
+            height=500
+        )
+
+        st.plotly_chart(fig2, use_container_width=True)
+
+    except Exception as e:
+        st.error("❌ Could not load evaluation data.")
+        st.code(str(e))
+        st.info("Make sure X_test.csv & y_test.csv exist in data/processed/")
+
 
 # --------------------------------------------------
 # PAGE 5: ABOUT / DOCUMENTATION
